@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Arrow Left / 26x26</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-106, -424)" id="26x26-Icon">
+            <g transform="translate(50, 170)">
+                <g id="Arrow-Left-/-26x26" transform="translate(56, 254)">
+                    <polygon id="Background" points="0 0 26 0 26 26 0 26"></polygon>
+                    <g id="Vector" transform="translate(4.5, 4.5)" fill="#303030">
+                        <path d="M-0.56568,9.06569 L-0.643139504,8.97596334 C-0.875518017,8.66277612 -0.849698182,8.21832818 -0.56568,7.93431 L7.93432,-0.56568 L8.02403665,-0.643139504 C8.3372238,-0.875518017 8.78167091,-0.849698182 9.06568,-0.56568 C9.3781,-0.25326 9.3781,0.25327 9.06568,0.56569 L1.131,8.5 L9.06568,16.4343 C9.3781,16.7467 9.3781,17.2533 9.06568,17.5657 C8.75327,17.8781 8.24673,17.8781 7.93431,17.5657 L-0.56568,9.06569 Z" id="Vector-border"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

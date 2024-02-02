@@ -1,0 +1,11 @@
+export const ONBOARDING = 'ONBOARDING';
+export const VERIFICATIONPHONENUMBER = 'VerificationPhoneNumber';
+export const SETUPNAME = 'SetupName';
+export const SETUPPHOTO = 'SetupPhoto';
+export const TABMENU = 'TABMENU';
+export const MASSAGES = 'Massages';
+export const CONTACTS = 'Contacts';
+export const CALL = 'Call';
+export const PROFILE = 'Profile';
+export const ADDCONTACT = 'Add contact';
+export const CHAT = 'CHAT';
