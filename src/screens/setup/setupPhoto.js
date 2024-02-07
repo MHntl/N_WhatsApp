@@ -1,4 +1,11 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {AppColors} from '../../utils/colors';
 import SectionTitle from '../../components/ui/sectionTitle';
@@ -10,6 +17,7 @@ import firestore from '@react-native-firebase/firestore';
 import Camera from '../../assets/icons/Camera/26x26.svg';
 import DeviceInfo from 'react-native-device-info';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const SetupPhoto = props => {
   const {phone, name, surname} = props.route.params;
@@ -20,6 +28,32 @@ const SetupPhoto = props => {
   const getDeviceInfo = async () => {
     const id = await DeviceInfo.getUniqueId();
     setId(_prev => id);
+  };
+
+  const selectImageFromLibrary = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      //base64 formatina (fotoyu string hale getirdik) cevirmek icin includeBase64: true,
+      includeBase64: true,
+      cropping: true,
+    }).then(image => {
+      let base64Photo = `data:${image.mime};base64,${image.data}`;
+      //console.log(image);
+      //setPhoto(image.path);
+      setPhoto(base64Photo);
+    });
+  };
+  //simulatorde kamera acilmiyor
+  const selectImageFromCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      setPhoto(image.path);
+    });
   };
 
   useEffect(() => {
@@ -68,16 +102,35 @@ const SetupPhoto = props => {
       </View>
       <View style={styles.body}>
         <TouchableOpacity
-          style={{
-            borderWidth: 1,
-            borderColor: AppColors.NeutralColors.Gray,
-            borderRadius: 1000,
-            padding: 50,
-            borderStyle: 'dashed',
-          }}>
-          <Camera />
+          onPress={() => selectImageFromLibrary()}
+          style={[
+            {
+              borderWidth: 1,
+              borderColor: AppColors.NeutralColors.Gray,
+              borderRadius: 1000,
+              borderStyle: 'dashed',
+            },
+            photo ? {padding: 0} : {padding: 50},
+          ]}>
+          {photo ? (
+            <Image
+              style={{
+                width: 150,
+                height: 150,
+                borderRadius: 1000,
+                resizeMode: 'cover',
+              }}
+              source={{uri: photo}}
+            />
+          ) : (
+            <Camera />
+          )}
         </TouchableOpacity>
-        <Text style={{marginVertical: 10}}>Upload</Text>
+        <Text style={{marginVertical: 10}}>Upload from gallery</Text>
+        <Text>or</Text>
+        <TouchableOpacity onPress={() => selectImageFromCamera()}>
+          <Text style={{fontSize: 16, color: 'blue'}}>Use camera</Text>
+        </TouchableOpacity>
       </View>
       <View>
         <Button title={'Next'} size={'medium'} onPress={() => userRegister()} />
